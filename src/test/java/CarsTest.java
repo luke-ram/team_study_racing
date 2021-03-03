@@ -46,6 +46,7 @@ class CarsTest {
         assertThat(result).contains(1, 1, 1);
     }
 
+
     @DisplayName(" 승자가 중복일때 우승자 정보 반환")
     @Test
     public void getWinnerMulti() {
