@@ -16,8 +16,5 @@ public class MainController {
 
         outputView.resultPrint(resultPositions);
 
-
-
-
     }
 }

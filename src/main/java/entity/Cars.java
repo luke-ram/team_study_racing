@@ -1,10 +1,8 @@
 package entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 //일급 컬렉션, 비지니스에 종속적인 자료구조를 만든다.
@@ -19,7 +17,7 @@ public class Cars {
         }
     }
 
-    public List<Integer> playGameWithRandom(RandomMaker randomMaker) {
+    public List<Integer> playGameWithRandom(NumberMaker randomMaker) {
 
         return cars.stream().map(car -> {
             car.checkCanMove(randomMaker.create());
@@ -28,14 +26,18 @@ public class Cars {
 
     }
 
+    public NumberMaker makeNumberRole() {
+        return new RandomMaker();
+    }
+
     public List<ResultPositions> playGameForGameCount(int gameCount) {
 
         List<ResultPositions> resultPositions = new ArrayList<>();
-        RandomMaker randomMaker = new RandomMaker();
+        NumberMaker numberMaker = makeNumberRole();
 
         for (int index = 0; index < gameCount; index++) {
 
-            List<Integer> result = playGameWithRandom(randomMaker);
+            List<Integer> result = playGameWithRandom(numberMaker);
             resultPositions.add(new ResultPositions(result));
         }
 

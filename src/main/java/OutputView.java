@@ -4,14 +4,17 @@ import java.util.List;
 
 public class OutputView {
 
-    public void resultPrint(List<ResultPositions> resultPositions){
+    public void resultPrint(List<ResultPositions> resultPositions) {
         for (ResultPositions resultPosition : resultPositions) {
             printConsole(resultPosition);
+            System.out.println();
         }
 
     }
 
     private void printConsole(ResultPositions resultPosition) {
-        //리턴 List<String> 출력
+        resultPosition.changePositionToMark().stream().forEach(mark -> {
+            System.out.println(mark);
+        });
     }
 }
