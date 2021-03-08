@@ -17,10 +17,10 @@ public class Cars {
         }
     }
 
-    public List<Integer> playGameWithRandom(NumberMaker randomMaker) {
+    public List<Integer> playGameWithRandom(NumberMaker numberMaker) {
 
         return cars.stream().map(car -> {
-            car.checkCanMove(randomMaker.create());
+            car.checkCanMove(numberMaker.create());
             return car.getPosition();
         }).collect(Collectors.toList());
 

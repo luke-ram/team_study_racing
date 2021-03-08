@@ -38,5 +38,37 @@ public class CarsTest {
 
     }
 
+    @Test
+    @DisplayName("숫자 생성 규칙을 오버라이딩하고, 앞으로 전진 못했을때의 결과를 받는다.")
+    public void playGameForGameCountTest_Stop() {
+
+        Cars cars = new Cars(1) {
+            @Override
+            public NumberMaker makeNumberRole() {
+                return () -> 1;
+            }
+        };
+
+        List<ResultPositions> resultPositions = cars.playGameForGameCount(1);
+        Assertions.assertThat(resultPositions.get(0).changePositionToMark()).isEqualTo(Arrays.asList(""));
+
+    }
+
+    @Test
+    @DisplayName("숫자 생성 규칙을 오버라이딩하고, 앞으로 전진 못했을때의 결과를 받는다.")
+    public void playGameForGameCountTest_Go_ONE_STEP() {
+
+        Cars cars = new Cars(1) {
+            @Override
+            public NumberMaker makeNumberRole() {
+                return () -> 5;
+            }
+        };
+
+        List<ResultPositions> resultPositions = cars.playGameForGameCount(1);
+        Assertions.assertThat(resultPositions.get(0).changePositionToMark()).isEqualTo(Arrays.asList("-"));
+
+    }
+
 
 }

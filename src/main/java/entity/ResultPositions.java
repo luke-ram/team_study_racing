@@ -8,7 +8,8 @@ public class ResultPositions {
     private List<Integer> positions;
     private final static String MARK = "-";
 
-    private ResultPositions(){}
+    private ResultPositions() {
+    }
 
     public ResultPositions(List<Integer> positions) {
         this.positions = positions;
