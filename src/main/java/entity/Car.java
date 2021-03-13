@@ -1,16 +1,27 @@
 package entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class Car {
 
     private final static int START_POSITION = 0;
     private final static int CAN_MOVE_MIN_NUMBER = 3;
+
+    private final static String EMPTY_NAME = "";
+
     private int position;
 
-    public Car() {
-        this.position = START_POSITION;
+    private String name;
+
+    public Car(String name){
+        this(name, START_POSITION);
+    }
+
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
     }
 
     public void goOneStep() {
@@ -22,4 +33,5 @@ public class Car {
             goOneStep();
         }
     }
+
 }
