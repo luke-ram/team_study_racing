@@ -1,8 +1,8 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -13,7 +13,7 @@ public class Cars {
     private List<Car> cars = new ArrayList<>();
 
 
-    public Cars(String inputNames){
+    public Cars(String inputNames) {
         List<String> parserResult = inputNameParser(inputNames);
         List<String> names = checkNameLength(parserResult);
 
@@ -22,10 +22,9 @@ public class Cars {
         }
     }
 
-
     public static List<String> inputNameParser(String inputNames) {
 
-        if(inputNames.isEmpty()){
+        if (inputNames.isEmpty()) {
             throw new IllegalArgumentException("빈값을 입력하였습니다.");
         }
 
@@ -38,7 +37,7 @@ public class Cars {
     public static List<String> checkNameLength(List<String> names) {
         boolean isWrong = names.stream().allMatch(name -> name.length() > 4);
 
-        if(isWrong){
+        if (isWrong) {
             throw new IllegalArgumentException("이름은 다섯글자를 넘을 수 없습니다.");
         }
         return names;
@@ -47,7 +46,7 @@ public class Cars {
     public List<Car> playGameWithRandom(NumberMaker numberMaker) {
 
         return cars.stream().map(car -> {
-            car.checkCanMove(numberMaker.create());
+            car.checkCanMove(numberMaker);
             return new Car(car.getName(), car.getPosition());
         }).collect(Collectors.toList());
 
@@ -69,5 +68,13 @@ public class Cars {
         }
 
         return resultPositions;
+    }
+
+    public List<String> getWinnerPlayer() {
+        Collections.sort(cars);
+        int maxPosition = cars.get(cars.size() - 1).getPosition();
+
+        return cars.stream().filter(car -> car.getPosition() == maxPosition)
+                .map(car -> car.getName()).collect(Collectors.toList());
     }
 }

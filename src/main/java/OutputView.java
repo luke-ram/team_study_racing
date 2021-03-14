@@ -1,6 +1,9 @@
+import com.sun.tools.javac.util.StringUtils;
 import entity.ResultPositions;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -16,5 +19,11 @@ public class OutputView {
         resultPosition.changePositionToMark().stream().forEach(mark -> {
             System.out.println(mark);
         });
+    }
+
+    public void resultWinnerPrint(List<String> winners){
+        String collect = winners.stream().collect(Collectors.joining(",","우승자는 ","입니다."));
+        System.out.println(collect);
+
     }
 }

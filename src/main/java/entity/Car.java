@@ -1,10 +1,9 @@
 package entity;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final static int START_POSITION = 0;
     private final static int CAN_MOVE_MIN_NUMBER = 3;
@@ -28,10 +27,14 @@ public class Car {
         this.position += 1;
     }
 
-    public void checkCanMove(int random) {
-        if (random > CAN_MOVE_MIN_NUMBER) {
+    public void checkCanMove(NumberMaker numberMaker) {
+        if ( numberMaker.create() > CAN_MOVE_MIN_NUMBER) {
             goOneStep();
         }
     }
 
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.getPosition());
+    }
 }

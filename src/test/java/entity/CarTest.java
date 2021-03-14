@@ -31,14 +31,14 @@ public class CarTest {
     @Test
     @DisplayName("숫자가 4 이상시 이동")
     public void move_greater_than_4() {
-        car.checkCanMove(4);
+        car.checkCanMove(() -> 4);
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("숫자가 4미만시 이동안함")
     public void not_move_less_4() {
-        car.checkCanMove(3);
+        car.checkCanMove(() -> 3);
         Assertions.assertThat(car.getPosition()).isEqualTo(0);
     }
 

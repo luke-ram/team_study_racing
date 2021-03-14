@@ -15,6 +15,7 @@ public class MainController {
         List<ResultPositions> resultPositions = cars.playGameForGameCount(gameCount);
 
         outputView.resultPrint(resultPositions);
+        outputView.resultWinnerPrint(cars.getWinnerPlayer());
 
     }
 }

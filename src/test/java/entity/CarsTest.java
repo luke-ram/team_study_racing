@@ -121,6 +121,12 @@ public class CarsTest {
 
     }
 
+    @Test
+    public void getWinnerTest(){
+        Cars cars = new Cars("a,b,c");
+        List<String> winners = cars.getWinnerPlayer();
+    }
+
 
 
 }
